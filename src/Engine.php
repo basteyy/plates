@@ -188,7 +188,7 @@ class Engine
     /**
      * Register a new template function.
      * @param  string   $name;
-     * @param  callback $callback;
+     * @param  callable $callback;
      * @return Engine
      */
     public function registerFunction($name, $callback)
@@ -283,11 +283,14 @@ class Engine
     /**
      * Create a new template.
      * @param  string   $name
+     * @param  array    $data
      * @return Template
      */
-    public function make($name)
+    public function make($name, array $data = array())
     {
-        return new Template($this, $name);
+        $template = new Template($this, $name);
+        $template->data($data);
+        return $template;
     }
 
     /**
